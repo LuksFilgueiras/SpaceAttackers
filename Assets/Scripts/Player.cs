@@ -6,13 +6,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Camera mainCam;
     [SerializeField] private Rigidbody2D rigidBody2D;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxDistanceOffSet = 0.3f;
 
-    void Start()
-    {
-        Debug.Log(mainCam.aspect);
-    }
+    [Header("Sprites Animation")]
+    [SerializeField] private Sprite[] shipSprites;
 
     void Update()
     {
@@ -26,6 +25,14 @@ public class Player : MonoBehaviour
 
         float maxDistance = ScreenWidth() / 2 - maxDistanceOffSet;
 
+        if(x > 0){
+            ChangeShipSprite(1);
+        }else if(x < 0){
+            ChangeShipSprite(2);
+        }else{
+            ChangeShipSprite(0);
+        }
+
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -maxDistance, maxDistance), transform.position.y, 0);
     }
 
@@ -33,5 +40,9 @@ public class Player : MonoBehaviour
         float height = 2f * mainCam.orthographicSize;
         float width = height * mainCam.aspect;
         return width;
+    }
+
+    void ChangeShipSprite(int index){
+        spriteRenderer.sprite = shipSprites[index];
     }
 }

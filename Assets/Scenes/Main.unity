@@ -310,8 +310,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 519420031}
   rigidBody2D: {fileID: 596393313}
+  spriteRenderer: {fileID: 596393315}
   moveSpeed: 2
   maxDistanceOffSet: 0.3
+  shipSprites:
+  - {fileID: 962627833, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  - {fileID: -1879732103, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  - {fileID: -256135338, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
 --- !u!212 &596393315
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -353,15 +358,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b3b73994c48469547a96c200db5f7bce, type: 3}
+  m_Sprite: {fileID: -665171905, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.25, y: 0.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &619394800
