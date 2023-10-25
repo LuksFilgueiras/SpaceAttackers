@@ -317,6 +317,11 @@ MonoBehaviour:
   - {fileID: 962627833, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
   - {fileID: -1879732103, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
   - {fileID: -256135338, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  missilePrefab: {fileID: 1880174449589180047, guid: d43b366250ac97545af3287391230891, type: 3}
+  shotStrength: 8
+  shotDelay: 0
+  shotDelayTimer: 0.3
+  destroyMissileInstanceTimer: 0.7
 --- !u!212 &596393315
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -358,7 +363,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -665171905, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  m_Sprite: {fileID: 962627833, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -366,7 +371,7 @@ SpriteRenderer:
   m_Size: {x: 0.25, y: 0.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &619394800

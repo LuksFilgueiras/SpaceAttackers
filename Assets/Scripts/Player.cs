@@ -13,9 +13,17 @@ public class Player : MonoBehaviour
     [Header("Sprites Animation")]
     [SerializeField] private Sprite[] shipSprites;
 
+    [Header("Shooting")]
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private float shotStrength;
+    [SerializeField] private float shotDelay = 0f;
+    [SerializeField] private float shotDelayTimer = 0.3f;
+    [SerializeField] private float destroyMissileInstanceTimer = 0.5f;
+
     void Update()
     {
         Movement();
+        Shoot();
     }
 
     void Movement(){
@@ -34,6 +42,18 @@ public class Player : MonoBehaviour
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -maxDistance, maxDistance), transform.position.y, 0);
+    }
+
+    void Shoot(){
+        if(Input.GetKey(KeyCode.T) && shotDelay <= 0f){
+            GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+            missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
+            Destroy(missileInstance, destroyMissileInstanceTimer);
+            shotDelay = shotDelayTimer;
+        }
+        else{
+            shotDelay -= Time.deltaTime;
+        }
     }
 
     float ScreenWidth(){
