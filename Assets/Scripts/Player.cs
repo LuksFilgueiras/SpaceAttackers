@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera mainCam;
     [SerializeField] private Rigidbody2D rigidBody2D;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float maxDistanceOffSet = 0.3f;
 
     [Header("Sprites Animation")]
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        Shoot();
+        ShootMissiles();
     }
 
     void Movement(){
@@ -44,8 +44,8 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -maxDistance, maxDistance), transform.position.y, 0);
     }
 
-    void Shoot(){
-        if(Input.GetKey(KeyCode.T) && shotDelay <= 0f){
+    void ShootMissiles(){
+        if(Input.GetKey(KeyCode.Space) && shotDelay <= 0f){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
             Destroy(missileInstance, destroyMissileInstanceTimer);
