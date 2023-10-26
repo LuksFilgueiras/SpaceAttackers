@@ -54,7 +54,12 @@ public class EnemySpawner : MonoBehaviour
 
             linesAmount++;
         }else{
-            enemyAmount++;
+            if(linesAmount < 4 && enemyAmount >= 5){
+                linesAmount++;
+                enemyAmount--;
+            }else{
+                enemyAmount++;
+            }
         }
     }
 
