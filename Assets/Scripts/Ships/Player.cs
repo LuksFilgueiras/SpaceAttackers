@@ -2,45 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Ship
 {
-    [SerializeField] private Camera mainCam;
-    [SerializeField] private Rigidbody2D rigidBody2D;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float maxDistanceOffSet = 0.3f;
 
     [Header("Sprites Animation")]
     [SerializeField] private Sprite[] shipSprites;
 
-    [Header("Shooting")]
-    [SerializeField] private GameObject missilePrefab;
-    [SerializeField] private float shotStrength;
-    [SerializeField] private float shotDelay = 0f;
-    [SerializeField] private float shotDelayTimer = 0.3f;
-    [SerializeField] private float destroyMissileInstanceTimer = 0.5f;
-
-    [Header("HealthComponent")]
-    [SerializeField] private HealthManager healthManager;
-
-    [Header("Audio")]
-    [SerializeField] private AudioClip shootingSFX;
-    private AudioSource SFXSource;
-
-    void Awake(){
-        SFXSource = GameObject.FindGameObjectWithTag("SFXSource").GetComponent<AudioSource>();
-    }
-
     void Update()
     {
         Movement();
-        ShootMissiles();
+        ShotMissiles();
     }
 
     void Movement(){
         float x = Input.GetAxis("Horizontal");
 
-        rigidBody2D.velocity = new Vector2(x * moveSpeed, 0);
+        rigidBody2D.velocity = new Vector2(x * moveSpeedX, 0);
 
         float maxDistance = ScreenWidth() / 2 - maxDistanceOffSet;
 
@@ -55,7 +33,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -maxDistance, maxDistance), transform.position.y, 0);
     }
 
-    void ShootMissiles(){
+    protected override void ShotMissiles(){
         if(Input.GetKey(KeyCode.Space) && shotDelay <= 0f){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
@@ -67,12 +45,6 @@ public class Player : MonoBehaviour
         else{
             shotDelay -= Time.deltaTime;
         }
-    }
-
-    float ScreenWidth(){
-        float height = 2f * mainCam.orthographicSize;
-        float width = height * mainCam.aspect;
-        return width;
     }
 
     void ChangeShipSprite(int index){

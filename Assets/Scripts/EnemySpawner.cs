@@ -8,13 +8,71 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn")]
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private Transform spawnTransform;
-    [SerializeField] private int enemyAmount = 3;
-    [SerializeField] private int linesAmount = 2;
+    [SerializeField] private int enemyAmount = 1;
+    [SerializeField] private int linesAmount = 1;
     [SerializeField] private float spaceBetweenLines = 0.5f;
     [SerializeField] private float timeBetweenEnemySpawned = 0.5f;
 
+    [Header("Waves")]
+    [SerializeField] private float delayBetweenWaves = 0f;
+    [SerializeField] private float delayBetweenWavesTimer = 1f;
+
+    public List<Enemy> enemiesInBattlefield = new List<Enemy>();
+    bool isAllEnemiesInBattleField = false;
+    bool isAllEnemiesDestroyed = false;
+
     public void Start(){
         StartCoroutine(SpawnEnemies());
+        delayBetweenWaves = delayBetweenWavesTimer;
+    }
+
+    public void Update(){
+        ClearEnemiesIfAllDestroyed();
+        SendWaves();
+    }
+
+    void SendWaves(){
+        if(isAllEnemiesDestroyed && delayBetweenWaves > 0){
+            delayBetweenWaves -= Time.deltaTime;
+        }
+
+        if(isAllEnemiesDestroyed && delayBetweenWaves <= 0){
+            NewRandomDifficulty();
+            StartCoroutine(SpawnEnemies());
+            isAllEnemiesDestroyed = false;
+            delayBetweenWaves = delayBetweenWavesTimer;
+        }
+    }
+
+    void NewRandomDifficulty(){
+        int isEnemyAmount = Random.Range(0, 2);
+
+        if(isEnemyAmount > 0 && linesAmount < 4 && enemyAmount > 2){
+            if(enemyAmount > 1){
+                enemyAmount--;
+            }
+
+            linesAmount++;
+        }else{
+            enemyAmount++;
+        }
+    }
+
+    void ClearEnemiesIfAllDestroyed(){
+        if(isAllEnemiesInBattleField){
+            int enemiesCount = 0;
+            foreach(Enemy enemy in enemiesInBattlefield){
+                if(enemy == null){
+                    enemiesCount++;
+                }
+            }
+
+            if(enemiesCount == enemiesInBattlefield.Count){
+                isAllEnemiesInBattleField = false;
+                isAllEnemiesDestroyed = true;
+                enemiesInBattlefield.Clear();
+            }
+        }
     }
 
     IEnumerator SpawnEnemies(){
@@ -25,10 +83,13 @@ public class EnemySpawner : MonoBehaviour
                 if(i != 0){
                     enemyInstance.enemyPositionOffsetY += linesSpacement;
                 }
+                enemiesInBattlefield.Add(enemyInstance);
                 yield return new WaitForSeconds(timeBetweenEnemySpawned);
             }
             linesSpacement += spaceBetweenLines;
         }
+        
+        isAllEnemiesInBattleField = true;
     }
 
 }

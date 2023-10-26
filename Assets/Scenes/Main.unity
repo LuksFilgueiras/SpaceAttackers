@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 596393312}
-  cameraOffSetY: 1.4
+  cameraOffSetY: 1.3
 --- !u!1 &596393311
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596393311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -359,22 +359,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c73c6c705369f14f86c9459e41d6270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 519420031}
   rigidBody2D: {fileID: 596393313}
-  spriteRenderer: {fileID: 596393315}
-  moveSpeed: 2
+  moveSpeedX: 2
   maxDistanceOffSet: 0.3
-  shipSprites:
-  - {fileID: 962627833, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
-  - {fileID: -1879732103, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
-  - {fileID: -256135338, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  healthManager: {fileID: 596393316}
   missilePrefab: {fileID: 1880174449589180047, guid: d43b366250ac97545af3287391230891, type: 3}
   shotStrength: 8
   shotDelay: 0
   shotDelayTimer: 0.6
   destroyMissileInstanceTimer: 0.7
-  healthManager: {fileID: 596393316}
+  mainCam: {fileID: 519420031}
   shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
+  spriteRenderer: {fileID: 596393315}
+  shipSprites:
+  - {fileID: 962627833, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  - {fileID: -1879732103, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
+  - {fileID: -256135338, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
 --- !u!212 &596393315
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -846,7 +846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1114455261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1010,10 +1010,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 721801324, guid: f214120ae787f114d963f35361a4d18c, type: 3}
   spawnTransform: {fileID: 1286496731}
-  enemyAmount: 3
-  linesAmount: 2
+  enemyAmount: 1
+  linesAmount: 1
   spaceBetweenLines: 0.5
   timeBetweenEnemySpawned: 0.5
+  delayBetweenWaves: 0
+  delayBetweenWavesTimer: 2
+  enemiesInBattlefield: []
 --- !u!1 &1458639400
 GameObject:
   m_ObjectHideFlags: 0

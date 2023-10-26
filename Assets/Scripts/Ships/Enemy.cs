@@ -2,39 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Ship
 {
-    [SerializeField] private Rigidbody2D rigidBody2D;
     [SerializeField] private float moveSpeedY = 1f;
-    [SerializeField] private float moveSpeedX = 1.5f;
-    [SerializeField] private float maxDistanceOffSet = 0.3f;
     public bool isMovingLeft = false;
     public bool isPositioned = false;
-
-
-    [Header("Position on screen")]
-    [SerializeField] private Camera mainCam;
     public float enemyPositionOffsetY = 1f;
-
-    [Header("Health Component")]
-    [SerializeField] private HealthManager healthManager;
-
-    [Header("Enemy Attack")]
-    [SerializeField] private GameObject missilePrefab;
-    [SerializeField] private float shootStrength = 4f;
-    [SerializeField] private float shootDelay = 0.1f;
-    [SerializeField] private float shootDelayTimerMin = 1.2f;
-    [SerializeField] private float shootDelayTimerMax = 1.8f;
-
-    [Header("Audio")]
-    [SerializeField] private AudioClip shootingSFX;
-    private AudioSource SFXSource;
-
-    void Awake(){
-        SFXSource = GameObject.FindGameObjectWithTag("SFXSource").GetComponent<AudioSource>();
-        mainCam = FindObjectOfType<Camera>();
-    }
-    
 
     void Update(){
         EnemyBehaviour();
@@ -62,30 +35,24 @@ public class Enemy : MonoBehaviour
         }
 
         if(velocityY == 0){
-            Shooting();
+            ShotMissiles();
         }
 
         rigidBody2D.velocity = new Vector2(moveSpeedX, velocityY);
     }   
 
-    void Shooting(){
-        if(shootDelay <= 0){
+    protected override void ShotMissiles(){
+        if(shotDelay <= 0){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
-            missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.down * shootStrength, ForceMode2D.Impulse);
+            missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.down * shotStrength, ForceMode2D.Impulse);
             missileInstance.transform.rotation = Quaternion.Euler(0, 0, 180f);
-            Destroy(missileInstance, 1.2f);
-            shootDelay = Random.Range(shootDelayTimerMin, shootDelayTimerMax);
+            Destroy(missileInstance, destroyMissileInstanceTimer);
+            shotDelay = shotDelayTimer;
 
             SFXSource.PlayOneShot(shootingSFX);
         }else{
-            shootDelay -= Time.deltaTime;
+            shotDelay -= Time.deltaTime;
         }
-    }
-
-    float ScreenWidth(){
-         float height = 2f * mainCam.orthographicSize;
-         float width = height * mainCam.aspect;
-         return width;
     }
 
     public void OnTriggerEnter2D(Collider2D col){

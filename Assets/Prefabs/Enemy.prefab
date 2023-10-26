@@ -170,20 +170,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody2D: {fileID: 7945882901314287821}
-  moveSpeedY: 1
   moveSpeedX: 1.5
   maxDistanceOffSet: 0.3
-  isMovingLeft: 0
-  isPositioned: 0
-  mainCam: {fileID: 0}
-  enemyPositionOffsetY: 1
   healthManager: {fileID: 721801325}
   missilePrefab: {fileID: 8012632172456244050, guid: f0330bb0914cc044080d24a65121643c, type: 3}
-  shootStrength: 3
-  shootDelay: 0.1
-  shootDelayTimerMin: 1.2
-  shootDelayTimerMax: 1.8
+  shotStrength: 4
+  shotDelay: 0.1
+  shotDelayTimer: 1.4
+  destroyMissileInstanceTimer: 1.5
+  mainCam: {fileID: 0}
   shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
+  moveSpeedY: 1
+  isMovingLeft: 0
+  isPositioned: 0
+  enemyPositionOffsetY: 0.5
 --- !u!114 &721801325
 MonoBehaviour:
   m_ObjectHideFlags: 0
