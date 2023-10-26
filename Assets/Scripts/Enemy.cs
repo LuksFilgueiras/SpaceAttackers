@@ -67,7 +67,8 @@ public class Enemy : MonoBehaviour
         if(shootDelay <= 0){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.down * shootStrength, ForceMode2D.Impulse);
-            Destroy(missileInstance, 0.7f);
+            missileInstance.transform.rotation = Quaternion.Euler(0, 0, 180f);
+            Destroy(missileInstance, 1.2f);
             shootDelay = Random.Range(shootDelayTimerMin, shootDelayTimerMax);
         }else{
             shootDelay -= Time.deltaTime;

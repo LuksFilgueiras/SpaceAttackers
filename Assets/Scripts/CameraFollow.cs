@@ -12,6 +12,8 @@ public class CameraFollow : MonoBehaviour
     }
 
     void FollowPlayerYAxisOnly(){
-        transform.position = new Vector3(0, playerTransform.position.y + cameraOffSetY, -10f);
+        if(playerTransform != null){
+            transform.position = new Vector3(0, playerTransform.position.y + cameraOffSetY, -10f);
+        }
     }
 }

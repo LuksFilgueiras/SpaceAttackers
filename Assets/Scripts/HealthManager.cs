@@ -9,6 +9,14 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private Animator animator;
 
+    public int getActualHealth{
+        get{return actualHealth;}
+    }
+    
+    public int getMaxHealth{
+        get{return maxHealth;}
+    }
+
     void Awake(){
         actualHealth = maxHealth;
     }
@@ -23,6 +31,5 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     
 }
