@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float shotDelayTimer = 0.3f;
     [SerializeField] private float destroyMissileInstanceTimer = 0.5f;
 
+    [Header("HealthComponent")]
+    [SerializeField] private HealthManager healthManager;
+
     void Update()
     {
         Movement();
@@ -64,5 +67,12 @@ public class Player : MonoBehaviour
 
     void ChangeShipSprite(int index){
         spriteRenderer.sprite = shipSprites[index];
+    }
+
+    public void OnTriggerEnter2D(Collider2D col){
+        if(col.tag == "EnemyMissile"){
+            healthManager.TakeDamage(1);
+            Destroy(col.gameObject);
+        }
     }
 }
