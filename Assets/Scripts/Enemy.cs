@@ -26,10 +26,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float shootDelayTimerMin = 1.2f;
     [SerializeField] private float shootDelayTimerMax = 1.8f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootingSFX;
+    private AudioSource SFXSource;
 
     void Awake(){
+        SFXSource = GameObject.FindGameObjectWithTag("SFXSource").GetComponent<AudioSource>();
         mainCam = FindObjectOfType<Camera>();
     }
+    
 
     void Update(){
         EnemyBehaviour();
@@ -70,6 +75,8 @@ public class Enemy : MonoBehaviour
             missileInstance.transform.rotation = Quaternion.Euler(0, 0, 180f);
             Destroy(missileInstance, 1.2f);
             shootDelay = Random.Range(shootDelayTimerMin, shootDelayTimerMax);
+
+            SFXSource.PlayOneShot(shootingSFX);
         }else{
             shootDelay -= Time.deltaTime;
         }

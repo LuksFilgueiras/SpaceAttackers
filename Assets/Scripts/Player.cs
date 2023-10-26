@@ -23,6 +23,14 @@ public class Player : MonoBehaviour
     [Header("HealthComponent")]
     [SerializeField] private HealthManager healthManager;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootingSFX;
+    private AudioSource SFXSource;
+
+    void Awake(){
+        SFXSource = GameObject.FindGameObjectWithTag("SFXSource").GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         Movement();
@@ -53,6 +61,8 @@ public class Player : MonoBehaviour
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
             Destroy(missileInstance, destroyMissileInstanceTimer);
             shotDelay = shotDelayTimer;
+            
+            SFXSource.PlayOneShot(shootingSFX);
         }
         else{
             shotDelay -= Time.deltaTime;

@@ -183,6 +183,7 @@ MonoBehaviour:
   shootDelay: 0.1
   shootDelayTimerMin: 1.2
   shootDelayTimerMax: 1.8
+  shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
 --- !u!114 &721801325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +200,5 @@ MonoBehaviour:
   maxHealth: 2
   explosionVFX: {fileID: 6923717730999282288, guid: 568236f8d602da146a8b51e7ce52c19a, type: 3}
   animator: {fileID: 4157317904905178664}
+  explosionSFX: {fileID: 8300000, guid: e5e2a735ea4d52d40a2226e192a4d289, type: 3}
+  hitSFX: {fileID: 8300000, guid: 3e85f2677174b854aaabdaaaa0611a8f, type: 3}
