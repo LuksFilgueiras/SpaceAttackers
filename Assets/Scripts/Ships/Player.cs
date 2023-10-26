@@ -9,6 +9,9 @@ public class Player : Ship
     [Header("Sprites Animation")]
     [SerializeField] private Sprite[] shipSprites;
 
+    [Header("Score")]
+    public int score = 0;
+
     void Update()
     {
         Movement();
@@ -56,5 +59,9 @@ public class Player : Ship
             healthManager.TakeDamage(1);
             Destroy(col.gameObject);
         }
+    }
+
+    public void AddScore(int scorePoints){
+        score += scorePoints;
     }
 }

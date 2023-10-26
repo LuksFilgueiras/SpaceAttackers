@@ -9,6 +9,9 @@ public class Enemy : Ship
     public bool isPositioned = false;
     public float enemyPositionOffsetY = 1f;
 
+    [Header("Score")]
+    public int scorePoints = 10;
+
     void Update(){
         EnemyBehaviour();
     }
@@ -57,6 +60,9 @@ public class Enemy : Ship
 
     public void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "PlayerMissile"){
+            if(healthManager.getActualHealth == 1){
+                FindObjectOfType<Player>().AddScore(scorePoints);
+            }
             healthManager.TakeDamage(1);
             Destroy(col.gameObject);
         }
