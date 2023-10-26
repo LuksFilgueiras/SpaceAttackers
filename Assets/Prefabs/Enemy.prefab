@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7945882901314287823}
+  - component: {fileID: 4157317904905178664}
   - component: {fileID: 7945882901314287822}
   - component: {fileID: 7945882901314287821}
   - component: {fileID: 7945882901314287820}
@@ -36,6 +37,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4157317904905178664
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945882901314287808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2867c0fa5fae7f341abc6176e0c14dcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &7945882901314287822
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,8 +172,9 @@ MonoBehaviour:
   rigidBody2D: {fileID: 7945882901314287821}
   moveSpeedY: 1
   moveSpeedX: 1.5
-  isMovingLeft: 0
   maxDistanceOffSet: 0.3
+  isMovingLeft: 0
+  isPositioned: 0
   mainCam: {fileID: 0}
   enemyPositionOffsetY: 1
   healthManager: {fileID: 721801325}
@@ -174,3 +197,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actualHealth: 0
   maxHealth: 2
+  explosionVFX: {fileID: 6923717730999282288, guid: 568236f8d602da146a8b51e7ce52c19a, type: 3}
+  animator: {fileID: 4157317904905178664}
