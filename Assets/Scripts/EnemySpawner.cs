@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    
+    private ChatManager chatManager;
+
     [Header("Spawn")]
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private Transform spawnTransform;
-    [SerializeField] private int enemyAmount = 1;
+    [SerializeField] private int enemyAmount = 0;
     [SerializeField] private int linesAmount = 1;
     [SerializeField] private float spaceBetweenLines = 0.5f;
     [SerializeField] private float timeBetweenEnemySpawned = 0.5f;
@@ -19,10 +20,10 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Enemy> enemiesInBattlefield = new List<Enemy>();
     bool isAllEnemiesInBattleField = false;
-    bool isAllEnemiesDestroyed = false;
+    bool isAllEnemiesDestroyed = true;
 
     public void Start(){
-        StartCoroutine(SpawnEnemies());
+        chatManager = FindObjectOfType<ChatManager>();
         delayBetweenWaves = delayBetweenWavesTimer;
     }
 
@@ -32,6 +33,10 @@ public class EnemySpawner : MonoBehaviour
     }
 
     void SendWaves(){
+        if(!chatManager.isChatFinished){
+            return;
+        }
+
         if(isAllEnemiesDestroyed && delayBetweenWaves > 0){
             delayBetweenWaves -= Time.deltaTime;
         }
@@ -46,6 +51,11 @@ public class EnemySpawner : MonoBehaviour
 
     void NewRandomDifficulty(){
         int isEnemyAmount = Random.Range(0, 2);
+
+        if(enemyAmount == 0){
+            enemyAmount++;
+            return;
+        }
 
         if(isEnemyAmount > 0 && linesAmount < 4 && enemyAmount > 2){
             if(enemyAmount > 1){
