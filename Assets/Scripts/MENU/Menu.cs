@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     public EventSystem eventSystem;
     void Start()
     {
+        Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -18,7 +19,7 @@ public class Menu : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0)){
             eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
         }
-        
+
         if(Input.GetKeyDown(KeyCode.Escape)){
             QuitGame();
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : Ship
 {
@@ -56,6 +57,9 @@ public class Player : Ship
 
     public void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "EnemyMissile"){
+            if(healthManager.getActualHealth == 1){
+                FindObjectOfType<ScoreSave>().SaveScore(score);
+            }
             healthManager.TakeDamage(1);
             Destroy(col.gameObject);
         }
