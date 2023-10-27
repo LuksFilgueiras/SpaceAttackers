@@ -34,6 +34,7 @@ public class GameOverScreen : MonoBehaviour
             }
 
             if(Input.GetKeyDown(KeyCode.Space) && timeToEnter <= 0){
+                Time.timeScale = 1f;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }

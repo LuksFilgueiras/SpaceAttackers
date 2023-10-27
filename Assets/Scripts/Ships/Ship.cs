@@ -28,6 +28,7 @@ public class Ship : MonoBehaviour
     protected AudioSource SFXSource;
 
     void Awake(){
+        Cursor.visible = false;
         SFXSource = GameObject.FindGameObjectWithTag("SFXSource").GetComponent<AudioSource>();
         mainCam = FindObjectOfType<Camera>();
     }
