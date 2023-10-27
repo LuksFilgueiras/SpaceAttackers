@@ -8,15 +8,22 @@ public class Enemy : Ship
     public bool isMovingLeft = false;
     public bool isPositioned = false;
     public float enemyPositionOffsetY = 1f;
+    public Collider2D bodyCollider;
 
     [Header("Score")]
     public int scorePoints = 10;
-
+    
     void Update(){
         EnemyBehaviour();
     }
 
     void EnemyBehaviour(){
+        if(!isPositioned){
+            bodyCollider.enabled = false;
+        }else{
+            bodyCollider.enabled = true;
+        }
+
         float velocityY = -moveSpeedY;
         float positionYLimit = mainCam.orthographicSize - enemyPositionOffsetY;
 

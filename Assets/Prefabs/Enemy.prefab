@@ -184,6 +184,8 @@ MonoBehaviour:
   isMovingLeft: 0
   isPositioned: 0
   enemyPositionOffsetY: 0.5
+  bodyCollider: {fileID: 7945882901314287820}
+  scorePoints: 10
 --- !u!114 &721801325
 MonoBehaviour:
   m_ObjectHideFlags: 0
