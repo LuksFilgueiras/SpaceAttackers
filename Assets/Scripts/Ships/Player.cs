@@ -16,7 +16,6 @@ public class Player : Ship
     {
         Movement();
         ShotMissiles();
-        QuitGame();
     }
 
     void Movement(){
@@ -64,11 +63,5 @@ public class Player : Ship
 
     public void AddScore(int scorePoints){
         score += scorePoints;
-    }
-
-    public void QuitGame(){
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            Application.Quit();
-        }
     }
 }

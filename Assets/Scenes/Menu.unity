@@ -858,6 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playSceneLoadName: Main
+  eventSystem: {fileID: 1720165779}
 --- !u!1 &1054572160
 GameObject:
   m_ObjectHideFlags: 0
