@@ -10,6 +10,10 @@ public class Enemy : Ship
     public float enemyPositionOffsetY = 1f;
     public Collider2D bodyCollider;
 
+    [Header("Drops")]
+    public List<PickUp> drops = new List<PickUp>();
+    public int dropChance = 25;
+
     [Header("Score")]
     public int scorePoints = 10;
     
@@ -69,6 +73,12 @@ public class Enemy : Ship
         if(col.tag == "PlayerMissile"){
             if(healthManager.getActualHealth == 1){
                 FindObjectOfType<Player>().AddScore(scorePoints);
+
+                int chanceToDrop = Random.Range(0, 100);
+                if(chanceToDrop <= dropChance){
+                    int randomDrop = Random.Range(0, drops.Count);
+                    Instantiate(drops[randomDrop], transform.position, Quaternion.identity);
+                }
             }
             healthManager.TakeDamage(1);
             Destroy(col.gameObject);

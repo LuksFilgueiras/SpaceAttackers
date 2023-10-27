@@ -28,6 +28,14 @@ public class HealthManager : MonoBehaviour
         actualHealth = maxHealth;
     }
 
+    public void RestoreHealth(int health){
+        actualHealth += health;
+
+        if(actualHealth >= maxHealth){
+            actualHealth = maxHealth;
+        }
+    }
+
     public void TakeDamage(int damage){
         actualHealth -= damage;
         animator.SetTrigger("Hit");

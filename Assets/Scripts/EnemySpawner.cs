@@ -5,12 +5,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private ChatManager chatManager;
+    private Player player;
 
     [Header("Spawn")]
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private int enemyAmount = 0;
+    [SerializeField] private int maxEnemyAmount = 4;
     [SerializeField] private int linesAmount = 1;
+    [SerializeField] private int maxLinesAmount = 3;
     [SerializeField] private float spaceBetweenLines = 0.5f;
     [SerializeField] private float timeBetweenEnemySpawned = 0.5f;
 
@@ -25,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     public void Start(){
         chatManager = FindObjectOfType<ChatManager>();
         delayBetweenWaves = delayBetweenWavesTimer;
+        player = FindObjectOfType<Player>();
     }
 
     public void Update(){
@@ -57,14 +61,14 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        if(isEnemyAmount > 0 && linesAmount < 4 && enemyAmount > 2){
+        if(isEnemyAmount > 0 && linesAmount < maxLinesAmount && enemyAmount > 2){
             if(enemyAmount > 1){
                 enemyAmount--;
             }
 
             linesAmount++;
         }else{
-            if(linesAmount < 4 && enemyAmount >= 5){
+            if(linesAmount < maxLinesAmount && enemyAmount >= maxEnemyAmount){
                 linesAmount++;
                 enemyAmount--;
             }else{

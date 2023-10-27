@@ -171,12 +171,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody2D: {fileID: 7945882901314287821}
   moveSpeedX: 1.5
+  maxMoveSpeedX: 6
   maxDistanceOffSet: 0.3
   healthManager: {fileID: 721801325}
   missilePrefab: {fileID: 8012632172456244050, guid: f0330bb0914cc044080d24a65121643c, type: 3}
   shotStrength: 4
   shotDelay: 0.1
   shotDelayTimer: 1.4
+  minShotDelayTimer: 0.3
   destroyMissileInstanceTimer: 1.5
   mainCam: {fileID: 0}
   shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
@@ -185,6 +187,11 @@ MonoBehaviour:
   isPositioned: 0
   enemyPositionOffsetY: 0.5
   bodyCollider: {fileID: 7945882901314287820}
+  drops:
+  - {fileID: 7388973753930166188, guid: 3bd67857f900a834894681eed9c56d59, type: 3}
+  - {fileID: 7941768519090862476, guid: ae34ffacaad4368438a6ce58a7f7758a, type: 3}
+  - {fileID: 4236003350729865689, guid: 78e2c11d17998f644a50766c96f1c513, type: 3}
+  dropChance: 100
   scorePoints: 10
 --- !u!114 &721801325
 MonoBehaviour:

@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 596393316}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,12 +756,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody2D: {fileID: 596393313}
   moveSpeedX: 2
+  maxMoveSpeedX: 6
   maxDistanceOffSet: 0.3
   healthManager: {fileID: 596393316}
   missilePrefab: {fileID: 1880174449589180047, guid: d43b366250ac97545af3287391230891, type: 3}
   shotStrength: 8
   shotDelay: 0
   shotDelayTimer: 0.6
+  minShotDelayTimer: 0.3
   destroyMissileInstanceTimer: 0.7
   mainCam: {fileID: 519420031}
   shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
@@ -1688,8 +1690,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 721801324, guid: f214120ae787f114d963f35361a4d18c, type: 3}
   spawnTransform: {fileID: 1286496731}
-  enemyAmount: 1
+  enemyAmount: 0
+  maxEnemyAmount: 5
   linesAmount: 1
+  maxLinesAmount: 3
   spaceBetweenLines: 0.5
   timeBetweenEnemySpawned: 0.5
   delayBetweenWaves: 0

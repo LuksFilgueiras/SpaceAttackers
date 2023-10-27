@@ -6,6 +6,7 @@ public class Ship : MonoBehaviour
 {
     public Rigidbody2D rigidBody2D;
     public float moveSpeedX = 2f;
+    public float maxMoveSpeedX = 6f;
     public float maxDistanceOffSet = 0.3f;
     
     [Header("Health Component")]
@@ -13,11 +14,12 @@ public class Ship : MonoBehaviour
     
     
     [Header("Attack")]
-    [SerializeField] protected GameObject missilePrefab;
-    [SerializeField] protected float shotStrength = 4f;
-    [SerializeField] protected float shotDelay = 0.1f;
-    [SerializeField] protected float shotDelayTimer = 1.2f;
-    [SerializeField] protected float destroyMissileInstanceTimer = 0.5f;
+    public GameObject missilePrefab;
+    public float shotStrength = 4f;
+    public float shotDelay = 0.1f;
+    public float shotDelayTimer = 1.2f;
+    public float minShotDelayTimer = 0.3f;
+    public float destroyMissileInstanceTimer = 0.5f;
 
     [Header("Position on screen")]
     [SerializeField] protected Camera mainCam;
@@ -42,5 +44,21 @@ public class Ship : MonoBehaviour
 
     protected virtual void ShotMissiles(){
 
+    }
+
+    public void ReduceShotDelayTimer(float amount){
+        if(shotDelayTimer >= minShotDelayTimer){
+            shotDelayTimer -= amount;
+        }else{
+            shotDelayTimer = minShotDelayTimer;
+        }
+    }
+
+    public void AddMoveSpeedX(float amount){
+        if(moveSpeedX <= maxMoveSpeedX){
+            moveSpeedX += amount;
+        }else{
+            moveSpeedX = maxMoveSpeedX;
+        }
     }
 }

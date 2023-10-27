@@ -23,8 +23,12 @@ public class PlayerHealthUI : MonoBehaviour
         int maxHealth = playerHealthManager.getMaxHealth;
         int actualHealth = playerHealthManager.getActualHealth;
 
-        for(int i = actualHealth; i < maxHealth; i++){
-            hearts[i].GetComponentsInChildren<Image>()[1].enabled = false;
+        for(int i = 0; i < maxHealth; i++){
+            if(i >= actualHealth){
+                hearts[i].GetComponentsInChildren<Image>()[1].enabled = false;
+            }else{
+                hearts[i].GetComponentsInChildren<Image>()[1].enabled = true;
+            }
         }
     }
 }

@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 939273429}
   - component: {fileID: 939273428}
   - component: {fileID: 939273432}
+  - component: {fileID: 939273433}
   m_Layer: 5
   m_Name: MENU
   m_TagString: Untagged
@@ -995,6 +996,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playSceneLoadName: Main
   eventSystem: {fileID: 1720165779}
+--- !u!114 &939273433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939273427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f6944bab9de8f459727f434c9e1852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 240503048}
 --- !u!1 &1054572160
 GameObject:
   m_ObjectHideFlags: 0
