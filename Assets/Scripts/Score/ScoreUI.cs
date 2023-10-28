@@ -10,6 +10,7 @@ public class ScoreUI : MonoBehaviour
     void Start()
     {
         score = FindObjectOfType<ScoreSave>();
+        score.scorePoints = 0;
     }
 
     // Update is called once per frame

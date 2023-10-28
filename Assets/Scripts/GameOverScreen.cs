@@ -36,9 +36,7 @@ public class GameOverScreen : MonoBehaviour
 
         if(panel.activeSelf){
             ScoreSave score = FindObjectOfType<ScoreSave>();
-
             score.SaveScore();
-            score.scorePoints = 0;
 
             timeToEnter -= Time.unscaledDeltaTime;
 
