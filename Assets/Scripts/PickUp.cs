@@ -41,6 +41,15 @@ public class PickUp : MonoBehaviour
         else if(pickUpType == PickUpType.firerate){
             FindObjectOfType<Player>().ReduceShotDelayTimer(shootingSpeedModifier);
             DestroyGameObject();
+        }else if(pickUpType == PickUpType.revive){
+            // PARA PEGAR A LISTA DE JOGADORES
+            HealthUIManager healthUIManager = FindObjectOfType<HealthUIManager>();
+            foreach(Player player in healthUIManager.playersInGame){
+                if(!player.gameObject.activeSelf){
+                    player.gameObject.SetActive(true);
+                }
+            }
+            DestroyGameObject();
         }
     }
 
@@ -61,5 +70,6 @@ public class PickUp : MonoBehaviour
 public enum PickUpType{
     health,
     speed,
-    firerate
+    firerate,
+    revive
 }

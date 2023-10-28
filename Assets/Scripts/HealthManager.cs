@@ -48,7 +48,11 @@ public class HealthManager : MonoBehaviour
             GameObject explosionVFXInstance = Instantiate(explosionVFX, transform.position, Quaternion.identity);
             Destroy(explosionVFXInstance, 0.45f);
             sfxSource.PlayOneShot(explosionSFX);
-            Destroy(gameObject);
+            if(gameObject.tag == "Player"){
+                gameObject.SetActive(false);
+            }else{
+                Destroy(gameObject);
+            }
         }
     }
     

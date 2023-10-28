@@ -1163,7 +1163,7 @@ MonoBehaviour:
   inactiveColor:
     serializedVersion: 2
     rgba: 1694498815
-  timeToEnter: 1.2
+  timeToEnter: 0.8
 --- !u!114 &939273433
 MonoBehaviour:
   m_ObjectHideFlags: 0

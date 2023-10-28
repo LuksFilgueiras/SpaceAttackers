@@ -24,12 +24,13 @@ public class GameOverScreen : MonoBehaviour
     void Update(){
         int index = 0;
         foreach(Player p in healthUIManager.playersInGame){
-            if(p == null){
+            if(!p.gameObject.activeSelf){
                 index++;
             }
         }
 
         if(index == healthUIManager.playersInGame.Count){
+            Time.timeScale = 0;
             panel.SetActive(true);
         }
 
