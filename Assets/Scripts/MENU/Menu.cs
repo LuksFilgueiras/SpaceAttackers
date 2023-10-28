@@ -10,6 +10,8 @@ public class Menu : MonoBehaviour
     public EventSystem eventSystem;
     void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
         Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

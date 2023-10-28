@@ -15,7 +15,7 @@ public class Enemy : Ship
     public int dropChance = 25;
 
     [Header("Score")]
-    public int scorePoints = 10;
+    public int scorePoints = 1;
     
     void Update(){
         EnemyBehaviour();

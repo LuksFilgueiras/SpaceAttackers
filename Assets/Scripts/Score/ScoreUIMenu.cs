@@ -9,9 +9,9 @@ public class ScoreUIMenu : MonoBehaviour
 
     void Start(){
         if(PlayerPrefs.HasKey("HighestScore")){
-            scoreText.text = "HIGHEST SCORE: " + PlayerPrefs.GetInt("HighestScore").ToString("0000");
+            scoreText.text = "MAX. ENEMIES KILLED: " + PlayerPrefs.GetInt("HighestScore").ToString("00");
         }else{
-            scoreText.text = "NO SCORE";
+            scoreText.text = "ZERO ENEMIES KILLED";
         }
     }
 }
