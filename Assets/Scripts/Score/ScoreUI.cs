@@ -5,16 +5,16 @@ using TMPro;
 
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private ScoreSave score;
     [SerializeField] private TextMeshProUGUI scoreText;
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        score = FindObjectOfType<ScoreSave>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = player.score.ToString("00");   
+        scoreText.text = score.scorePoints.ToString("00");   
     }
 }

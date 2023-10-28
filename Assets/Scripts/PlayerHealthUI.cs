@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PlayerHealthUI : MonoBehaviour
 {
-    [SerializeField] private HealthManager playerHealthManager;
-    [SerializeField] private Transform heartsContainer;
-    [SerializeField] private GameObject heartUIPrefab;
+    public HealthManager playerHealthManager;
+    public Transform heartsContainer;
+    public GameObject heartUIPrefab;
+    public Image icon;
     private List<GameObject> hearts = new List<GameObject>();
+    
 
-    void Start(){
-        playerHealthManager = FindObjectOfType<Player>().GetComponent<HealthManager>();
-
+    public void InitiateHealthUI(){
         for(int i = 0; i < playerHealthManager.getMaxHealth; i++){
             GameObject heartUIInstance = Instantiate(heartUIPrefab, heartsContainer);
             hearts.Add(heartUIInstance);
@@ -20,6 +20,15 @@ public class PlayerHealthUI : MonoBehaviour
     }
 
     void Update(){
+        if(playerHealthManager == null){
+            if(hearts.Count > 0){
+                foreach(GameObject heart in hearts){
+                    heart.GetComponentsInChildren<Image>()[1].enabled = false;
+                }
+            }
+            return;
+        }
+
         int maxHealth = playerHealthManager.getMaxHealth;
         int actualHealth = playerHealthManager.getActualHealth;
 

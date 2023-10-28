@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private HealthUIManager healthUIManager; // só pra pegar a lista de player
     [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI replayText;
     [SerializeField] private Color32 inactiveColor;
@@ -15,25 +16,36 @@ public class GameOverScreen : MonoBehaviour
 
     void Awake(){
         replayText.color = inactiveColor;
-        player = FindObjectOfType<Player>();
+        healthUIManager = FindObjectOfType<HealthUIManager>();
         panel.SetActive(false);
     }
 
 
     void Update(){
-        if(player == null){
+        int index = 0;
+        foreach(Player p in healthUIManager.playersInGame){
+            if(p == null){
+                index++;
+            }
+        }
+
+        if(index == healthUIManager.playersInGame.Count){
             panel.SetActive(true);
-            Time.timeScale = 0f;
         }
 
         if(panel.activeSelf){
+            ScoreSave score = FindObjectOfType<ScoreSave>();
+
+            score.SaveScore();
+            score.scorePoints = 0;
+
             timeToEnter -= Time.unscaledDeltaTime;
 
             if(timeToEnter <= 0){
                 replayText.color = Color.white;
             }
 
-            if(Input.GetKeyDown(KeyCode.Space) && timeToEnter <= 0){
+            if((Input.GetKeyDown(KeyCode.Space) || Input.GetButton("Fire1")) && timeToEnter <= 0){
                 Time.timeScale = 1f;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

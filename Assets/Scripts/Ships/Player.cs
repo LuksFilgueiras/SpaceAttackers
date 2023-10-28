@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.InputSystem;
 
 public class Player : Ship
 {
@@ -13,14 +13,30 @@ public class Player : Ship
     [Header("Score")]
     public int score = 0;
 
+    [Header("Input System")]
+    public bool isShooting = false;
+    public Vector2 movement = Vector2.zero;
+    
+    void Start(){
+        FindObjectOfType<HealthUIManager>().AddPlayersInGame(this);
+    }
+
     void Update()
     {
         Movement();
         ShotMissiles();
     }
 
+    public void OnMove(InputAction.CallbackContext callbackContext){
+        movement = callbackContext.ReadValue<Vector2>();
+    }
+
+    public void OnShoot(InputAction.CallbackContext callbackContext){
+        isShooting = callbackContext.action.IsPressed();
+    }
+
     void Movement(){
-        float x = Input.GetAxis("Horizontal");
+        float x = movement.x;
 
         rigidBody2D.velocity = new Vector2(x * moveSpeedX, 0);
 
@@ -38,7 +54,7 @@ public class Player : Ship
     }
 
     protected override void ShotMissiles(){
-        if(Input.GetKey(KeyCode.Space) && shotDelay <= 0f){
+        if(isShooting && shotDelay <= 0f){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
             Destroy(missileInstance, destroyMissileInstanceTimer);
@@ -57,15 +73,8 @@ public class Player : Ship
 
     public void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "EnemyMissile"){
-            if(healthManager.getActualHealth == 1){
-                FindObjectOfType<ScoreSave>().SaveScore(score);
-            }
             healthManager.TakeDamage(1);
             Destroy(col.gameObject);
         }
-    }
-
-    public void AddScore(int scorePoints){
-        score += scorePoints;
     }
 }

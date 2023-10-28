@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreSave : MonoBehaviour
 {
+    public int scorePoints;
     public static ScoreSave scoreSaveInstance;
 
     void Awake(){
@@ -16,7 +17,7 @@ public class ScoreSave : MonoBehaviour
         }
     }
 
-    public void SaveScore(int scorePoints){
+    public void SaveScore(){
         if(!PlayerPrefs.HasKey("HighestScore")){
             PlayerPrefs.SetInt("HighestScore", scorePoints);
         }

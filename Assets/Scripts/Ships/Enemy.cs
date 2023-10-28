@@ -72,7 +72,7 @@ public class Enemy : Ship
     public void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "PlayerMissile"){
             if(healthManager.getActualHealth == 1){
-                FindObjectOfType<Player>().AddScore(scorePoints);
+                FindObjectOfType<ScoreSave>().scorePoints += 1;
 
                 int chanceToDrop = Random.Range(0, 100);
                 if(chanceToDrop <= dropChance){
