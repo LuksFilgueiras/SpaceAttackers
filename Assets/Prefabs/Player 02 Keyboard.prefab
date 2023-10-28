@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7704334960023387959}
   - component: {fileID: -7479737816149261356}
   m_Layer: 0
-  m_Name: Player 02
+  m_Name: Player 02 Keyboard
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
     m_ActionId: a90c1a90-9dcb-4675-a207-54e5528eae2f
     m_ActionName: Controls/Shoot[/Keyboard/space,/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: PLAYER02
+  m_DefaultControlScheme: KEYBOARD02
   m_DefaultActionMap: Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

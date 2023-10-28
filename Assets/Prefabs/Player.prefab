@@ -269,7 +269,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a90c1a90-9dcb-4675-a207-54e5528eae2f
     m_ActionName: Controls/Shoot[/Keyboard/space,/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: PLAYER
   m_DefaultActionMap: Controls
   m_SplitScreenIndex: -1

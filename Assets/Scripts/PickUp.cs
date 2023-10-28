@@ -43,8 +43,8 @@ public class PickUp : MonoBehaviour
             DestroyGameObject();
         }else if(pickUpType == PickUpType.revive){
             // PARA PEGAR A LISTA DE JOGADORES
-            HealthUIManager healthUIManager = FindObjectOfType<HealthUIManager>();
-            foreach(Player player in healthUIManager.playersInGame){
+            PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+            foreach(Player player in playerManager.playersInGame){
                 if(!player.gameObject.activeSelf){
                     player.gameObject.SetActive(true);
                     player.noDamageTimer = 1f;

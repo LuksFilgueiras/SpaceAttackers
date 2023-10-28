@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393f3fd5834d5394ea1ecc8158568ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthUIManager: {fileID: 0}
+  playerManager: {fileID: 0}
   panel: {fileID: 482321104}
   replayText: {fileID: 1459498727}
   inactiveColor:
@@ -1219,7 +1219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3691ff7474334b45ac34b70a6e59951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersInGame: []
   playersHealthUI:
   - {fileID: 921020016}
   - {fileID: 1001203267}
@@ -1950,6 +1949,7 @@ GameObject:
   - component: {fileID: 1458639401}
   - component: {fileID: 1458639402}
   - component: {fileID: 1458639403}
+  - component: {fileID: 1458639404}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2004,7 +2004,7 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2033,6 +2033,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &1458639404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458639400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ee0538a536183498f8ba7990b3eb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputManager: {fileID: 1458639403}
+  playersInGame: []
 --- !u!1 &1459498725
 GameObject:
   m_ObjectHideFlags: 0

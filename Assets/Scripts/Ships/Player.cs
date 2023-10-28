@@ -23,7 +23,7 @@ public class Player : Ship
     public bool isInvincible = false;
     
     void Start(){
-        FindObjectOfType<HealthUIManager>().AddPlayersInGame(this);
+        FindObjectOfType<PlayerManager>().playersInGame.Add(this);
     }
 
     void Update()

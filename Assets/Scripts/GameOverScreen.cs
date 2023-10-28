@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField] private HealthUIManager healthUIManager; // só pra pegar a lista de player
+    [SerializeField] private PlayerManager playerManager; // só pra pegar a lista de player
     [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI replayText;
     [SerializeField] private Color32 inactiveColor;
@@ -16,20 +16,20 @@ public class GameOverScreen : MonoBehaviour
 
     void Awake(){
         replayText.color = inactiveColor;
-        healthUIManager = FindObjectOfType<HealthUIManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
         panel.SetActive(false);
     }
 
 
     void Update(){
         int index = 0;
-        foreach(Player p in healthUIManager.playersInGame){
+        foreach(Player p in playerManager.playersInGame){
             if(!p.gameObject.activeSelf){
                 index++;
             }
         }
 
-        if(index == healthUIManager.playersInGame.Count){
+        if(index == playerManager.playersInGame.Count){
             Time.timeScale = 0;
             panel.SetActive(true);
         }

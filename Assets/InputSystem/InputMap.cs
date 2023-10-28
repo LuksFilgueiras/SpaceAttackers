@@ -81,6 +81,17 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""c4908136-d3f2-4a54-a14e-19898e3efab1"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KEYBOARD02"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""91afd3dc-0f74-4ed1-9c02-fade0ea24dc8"",
                     ""path"": ""2DVector"",
@@ -255,6 +266,61 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""00f6de6d-05d5-4658-b21a-7e58af526d2c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""77995db7-f62d-41e4-9f7f-5bc43ce28fe7"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KEYBOARD02"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""189aed46-15e3-47ee-a0ab-d51143af1d25"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KEYBOARD02"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ab7f445b-8f01-4e4d-bc3d-e4442a130e88"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KEYBOARD02"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b136baaf-5c22-4b1f-ba4a-e57c00d784b8"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KEYBOARD02"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -282,6 +348,17 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""KEYBOARD02"",
+            ""bindingGroup"": ""KEYBOARD02"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": true,
                     ""isOR"": false
                 }
@@ -420,6 +497,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         {
             if (m_PLAYER02SchemeIndex == -1) m_PLAYER02SchemeIndex = asset.FindControlSchemeIndex("PLAYER02");
             return asset.controlSchemes[m_PLAYER02SchemeIndex];
+        }
+    }
+    private int m_KEYBOARD02SchemeIndex = -1;
+    public InputControlScheme KEYBOARD02Scheme
+    {
+        get
+        {
+            if (m_KEYBOARD02SchemeIndex == -1) m_KEYBOARD02SchemeIndex = asset.FindControlSchemeIndex("KEYBOARD02");
+            return asset.controlSchemes[m_KEYBOARD02SchemeIndex];
         }
     }
     public interface IControlsActions

@@ -78,7 +78,7 @@ public class Enemy : Ship
                 if(chanceToDrop <= dropChance){
                     int randomDrop = Random.Range(0, drops.Count);
                     if(drops[randomDrop].pickUpType == PickUpType.revive){
-                        foreach(Player p in FindObjectOfType<HealthUIManager>().playersInGame){
+                        foreach(Player p in FindObjectOfType<PlayerManager>().playersInGame){
                             if(!p.gameObject.activeSelf){
                                 Instantiate(drops[randomDrop], transform.position, Quaternion.identity);
                             }
