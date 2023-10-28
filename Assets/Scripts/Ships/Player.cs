@@ -16,6 +16,11 @@ public class Player : Ship
     [Header("Input System")]
     public bool isShooting = false;
     public Vector2 movement = Vector2.zero;
+
+    [Header("Spawn Effect")]
+    public Animator animator;
+    public float noDamageTimer = 1f;
+    public bool isInvincible = false;
     
     void Start(){
         FindObjectOfType<HealthUIManager>().AddPlayersInGame(this);
@@ -23,6 +28,7 @@ public class Player : Ship
 
     void Update()
     {
+        DoNotTakeDamageByTime();
         Movement();
         ShotMissiles();
     }
@@ -54,7 +60,7 @@ public class Player : Ship
     }
 
     protected override void ShotMissiles(){
-        if(isShooting && shotDelay <= 0f){
+        if(isShooting && shotDelay <= 0f && !isInvincible){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
             Destroy(missileInstance, destroyMissileInstanceTimer);
@@ -72,9 +78,20 @@ public class Player : Ship
     }
 
     public void OnTriggerEnter2D(Collider2D col){
-        if(col.tag == "EnemyMissile"){
+        if(col.tag == "EnemyMissile" && !isInvincible){
             healthManager.TakeDamage(1);
             Destroy(col.gameObject);
+        }
+    }
+
+    public void DoNotTakeDamageByTime(){
+        if(noDamageTimer >= 0){
+            noDamageTimer -= Time.deltaTime;
+            isInvincible = true;
+            animator.SetBool("isBlinking", isInvincible);
+        }else{
+            isInvincible = false;
+            animator.SetBool("isBlinking", isInvincible);
         }
     }
 }

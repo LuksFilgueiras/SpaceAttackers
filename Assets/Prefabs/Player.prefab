@@ -191,6 +191,9 @@ MonoBehaviour:
   score: 0
   isShooting: 0
   movement: {x: 0, y: 0}
+  animator: {fileID: 7704334960023387957}
+  noDamageTimer: 1
+  isInvincible: 0
 --- !u!114 &7704334960023387959
 MonoBehaviour:
   m_ObjectHideFlags: 0

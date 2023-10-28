@@ -47,6 +47,8 @@ public class PickUp : MonoBehaviour
             foreach(Player player in healthUIManager.playersInGame){
                 if(!player.gameObject.activeSelf){
                     player.gameObject.SetActive(true);
+                    player.noDamageTimer = 1f;
+                    player.GetComponent<HealthManager>().RestoreHealth(player.GetComponent<HealthManager>().getMaxHealth);
                 }
             }
             DestroyGameObject();
