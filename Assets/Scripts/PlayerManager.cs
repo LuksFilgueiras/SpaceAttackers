@@ -7,16 +7,37 @@ public class PlayerManager : MonoBehaviour
 {
     public PlayerInputManager playerInputManager;
     public List<Player> playersInGame = new List<Player>();
+    public Gamepad player02 = null;
 
+    void Awake(){
+        SetPlayer02GamePad();
+    }
     void Update()
     {
-        if(Gamepad.all[1].buttonSouth.isPressed && playersInGame.Count < playerInputManager.maxPlayerCount){
-            PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "PLAYER02");
-        }
-        else if(Input.GetKeyDown(KeyCode.Keypad0) && playersInGame.Count < playerInputManager.maxPlayerCount){
-            PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "KEYBOARD02", pairWithDevice: Keyboard.current);
-        }else{
+        if(playersInGame.Count >= playerInputManager.maxPlayerCount){
             playerInputManager.enabled = false;
+            return;
+        }
+
+        if(Gamepad.all.Count > 1){
+            if(player02.buttonSouth.isPressed && playersInGame.Count < playerInputManager.maxPlayerCount){
+                PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "PLAYER02");
+            }
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Keypad0) && playersInGame.Count < playerInputManager.maxPlayerCount){
+            PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "KEYBOARD02", pairWithDevice: Keyboard.current);
+        }
+    }
+
+    public void SetPlayer02GamePad(){
+        int currentGamepadId = Gamepad.current.deviceId;
+
+        foreach(Gamepad gamepad in Gamepad.all){
+            if(gamepad.deviceId != currentGamepadId){
+                player02 = gamepad;
+                break;
+            }
         }
     }
 }

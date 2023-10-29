@@ -1222,7 +1222,6 @@ MonoBehaviour:
   playersHealthUI:
   - {fileID: 921020016}
   - {fileID: 1001203267}
-  playerInputManager: {fileID: 1458639403}
 --- !u!1 &1001203266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,6 +2045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputManager: {fileID: 1458639403}
+  healthUIManager: {fileID: 0}
   playersInGame: []
 --- !u!1 &1459498725
 GameObject:

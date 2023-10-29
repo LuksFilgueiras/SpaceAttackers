@@ -14,7 +14,6 @@ public class Menu : MonoBehaviour
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update(){

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : Ship
 {
+    public static int playerIndex = 0;
+    [SerializeField] private HealthUIManager healthUIManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Sprites Animation")]
@@ -23,7 +25,9 @@ public class Player : Ship
     public bool isInvincible = false;
     
     void Start(){
+        FindObjectOfType<HealthUIManager>().ShowHealthUI(this);
         FindObjectOfType<PlayerManager>().playersInGame.Add(this);
+        playerIndex++;
     }
 
     void Update()
