@@ -183,6 +183,7 @@ MonoBehaviour:
   destroyMissileInstanceTimer: 0.7
   mainCam: {fileID: 0}
   shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
+  healthUIManager: {fileID: 0}
   spriteRenderer: {fileID: 7704334960023387952}
   shipSprites:
   - {fileID: 1340218660, guid: 11c93d74c1f1a1f4b988ab137f5ff7cc, type: 3}

@@ -19,18 +19,22 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
+        if(Input.GetKeyDown(KeyCode.Keypad0) && playersInGame.Count < playerInputManager.maxPlayerCount){
+            PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "KEYBOARD02", pairWithDevice: Keyboard.current);
+        }
+
         if(Gamepad.all.Count > 1){
             if(player02.buttonSouth.isPressed && playersInGame.Count < playerInputManager.maxPlayerCount){
                 PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "PLAYER02");
             }
         }
-        
-        if(Input.GetKeyDown(KeyCode.Keypad0) && playersInGame.Count < playerInputManager.maxPlayerCount){
-            PlayerInput.Instantiate(playerInputManager.playerPrefab, controlScheme: "KEYBOARD02", pairWithDevice: Keyboard.current);
-        }
     }
 
     public void SetPlayer02GamePad(){
+        if(Gamepad.all.Count == 0){
+            return;
+        }
+        
         int currentGamepadId = Gamepad.current.deviceId;
 
         foreach(Gamepad gamepad in Gamepad.all){
