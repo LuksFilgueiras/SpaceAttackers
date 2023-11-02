@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Enemy : Ship
 {
@@ -78,7 +79,7 @@ public class Enemy : Ship
                 if(chanceToDrop <= dropChance){
                     int randomDrop = Random.Range(0, drops.Count);
                     if(drops[randomDrop].pickUpType == PickUpType.revive){
-                        foreach(Player p in FindObjectOfType<PlayerManager>().playersInGame){
+                        foreach(PlayerInput p in FindObjectOfType<PlayerManager>().players){
                             if(!p.gameObject.activeSelf){
                                 Instantiate(drops[randomDrop], transform.position, Quaternion.identity);
                             }

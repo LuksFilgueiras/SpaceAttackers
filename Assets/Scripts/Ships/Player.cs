@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : Ship
 {
-    public static int playerIndex = 0;
+    public int playerIndex = 0;
+    public bool onKeyboard = false;
     [SerializeField] private HealthUIManager healthUIManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -23,12 +24,6 @@ public class Player : Ship
     public Animator animator;
     public float noDamageTimer = 1f;
     public bool isInvincible = false;
-    
-    void Start(){
-        FindObjectOfType<HealthUIManager>().ShowHealthUI(this);
-        FindObjectOfType<PlayerManager>().playersInGame.Add(this);
-        playerIndex++;
-    }
 
     void Update()
     {
@@ -67,6 +62,7 @@ public class Player : Ship
         if(isShooting && shotDelay <= 0f && !isInvincible){
             GameObject missileInstance = Instantiate(missilePrefab, transform.position, Quaternion.identity);
             missileInstance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * shotStrength, ForceMode2D.Impulse);
+            missileInstance.GetComponent<PlayerMissile>().player = this;
             Destroy(missileInstance, destroyMissileInstanceTimer);
             shotDelay = shotDelayTimer;
             
@@ -97,5 +93,9 @@ public class Player : Ship
             isInvincible = false;
             animator.SetBool("isBlinking", isInvincible);
         }
+    }
+
+    public void SetPlayerIndex(int index){
+        playerIndex = index;
     }
 }

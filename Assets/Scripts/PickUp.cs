@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class PickUp : MonoBehaviour
 {
@@ -29,26 +31,39 @@ public class PickUp : MonoBehaviour
         }
     }
 
-    public void ActivePickup(){
+    public void ActivePickup(Player user){
         if(pickUpType == PickUpType.health){
-            FindObjectOfType<Player>().GetComponent<HealthManager>().RestoreHealth(1);
+            user.GetComponent<HealthManager>().RestoreHealth(1);
             DestroyGameObject();
         }
         else if(pickUpType == PickUpType.speed){
-            FindObjectOfType<Player>().AddMoveSpeedX(moveSpeedModifier);
+            user.AddMoveSpeedX(moveSpeedModifier);
             DestroyGameObject();
         }
         else if(pickUpType == PickUpType.firerate){
-            FindObjectOfType<Player>().ReduceShotDelayTimer(shootingSpeedModifier);
+            user.ReduceShotDelayTimer(shootingSpeedModifier);
             DestroyGameObject();
         }else if(pickUpType == PickUpType.revive){
             // PARA PEGAR A LISTA DE JOGADORES
             PlayerManager playerManager = FindObjectOfType<PlayerManager>();
-            foreach(Player player in playerManager.playersInGame){
+            foreach(PlayerInput player in playerManager.players){
+                Player p = player.GetComponent<Player>();
                 if(!player.gameObject.activeSelf){
                     player.gameObject.SetActive(true);
-                    player.noDamageTimer = 1f;
-                    player.GetComponent<HealthManager>().RestoreHealth(player.GetComponent<HealthManager>().getMaxHealth);
+                    p.noDamageTimer = 1f;
+                    p.GetComponent<HealthManager>().RestoreHealth(p.GetComponent<HealthManager>().getMaxHealth);
+                    if(player.currentControlScheme == "PLAYER02" && p.onKeyboard && p.playerIndex > 0){
+                        player.SwitchCurrentControlScheme("KEYBOARD02", Keyboard.current);
+                    }
+                    if(player.currentControlScheme == "PLAYER02" && p.playerIndex == 0){
+                        player.SwitchCurrentControlScheme("PLAYER");
+                        InputUser.PerformPairingWithDevice(Keyboard.current, player.user);
+                        InputUser.PerformPairingWithDevice(Gamepad.all[0], player.user);
+                    }
+                    if(player.currentControlScheme == "PLAYER02" && !p.onKeyboard && p.playerIndex > 0){
+                        player.SwitchCurrentControlScheme("PLAYER02");
+                    }
+
                 }
             }
             DestroyGameObject();
@@ -61,7 +76,12 @@ public class PickUp : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "PlayerMissile" || col.tag == "Player"){
-            ActivePickup();
+            if(col.GetComponent<PlayerMissile>()){
+                ActivePickup(col.GetComponent<PlayerMissile>().player);
+            }else{
+                ActivePickup(col.GetComponent<Player>());
+            }
+
             TextMeshPro messageInstance = Instantiate(pickUpMessage, transform.position, Quaternion.identity);
             messageInstance.text = message;
             Destroy(messageInstance, 0.8f);

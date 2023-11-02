@@ -23,13 +23,13 @@ public class GameOverScreen : MonoBehaviour
 
     void Update(){
         int index = 0;
-        foreach(Player p in playerManager.playersInGame){
+        foreach(PlayerInput p in playerManager.players){
             if(!p.gameObject.activeSelf){
                 index++;
             }
         }
 
-        if(index == playerManager.playersInGame.Count){
+        if(index == playerManager.players.Count){
             Time.timeScale = 0;
             panel.SetActive(true);
         }

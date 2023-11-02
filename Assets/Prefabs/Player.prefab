@@ -183,6 +183,9 @@ MonoBehaviour:
   destroyMissileInstanceTimer: 0.7
   mainCam: {fileID: 0}
   shootingSFX: {fileID: 8300000, guid: 3db420e2854c096429e81ced5e567d0f, type: 3}
+  playerIndex: 0
+  onKeyboard: 0
+  healthUIManager: {fileID: 0}
   spriteRenderer: {fileID: 7704334960023387952}
   shipSprites:
   - {fileID: 962627833, guid: f0c3b9b50046cf54f94245fb63029e4b, type: 3}
@@ -269,7 +272,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a90c1a90-9dcb-4675-a207-54e5528eae2f
     m_ActionName: Controls/Shoot[/Keyboard/space,/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 1
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PLAYER
   m_DefaultActionMap: Controls
   m_SplitScreenIndex: -1
